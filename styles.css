@@ -1,12 +1,30 @@
 * {
   box-sizing: border-box;
+
+}
+header {
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+
 }
 h1 {
   display: center;
+  display: flex;
+  justify-content: center;
+  color: orangered;
+  font-family: righteous, sans-serif;
+  font-weight: bolder;
+  font-size: 60px;
+  font-weight: ;
+
 }
 body {
   height: 100vh;
   margin: 0;
+  background: black;
+  
 }
 
 
@@ -25,11 +43,22 @@ body {
 }
 
 .grid div {
-  border: 1px solid lightgrey;
+  border: 1px solid #5b5b5b;
   height: 5%;
   width: 5%;
 }
  .snake {
    background: red ;
   
+ }
+ grid div.pizza {
+   background-image: url(./assets/pizza.gif);
+   background-repeat: no-repeat;
+  background-size: contain;
+ }
+
+  grid div.pizza {
+   background-image: url(./assets/sandwich.gif);
+   background-repeat: no-repeat;
+  background-size: contain;
  }
