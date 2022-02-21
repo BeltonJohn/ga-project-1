@@ -1,69 +1,95 @@
-const grid = document.querySelector('.grid');
-const scoreBoard = document.querySelectorAll('.score');
-const squares = document.querySelectorAll('.grid div');
+const grid = document.querySelector(".grid");
+const scoreBoard = document.querySelectorAll(".score");
+const squares = document.querySelectorAll(".grid div");
 const width = 20;
 const cellCount = width * width;
 const cells = [];
 
-let snakeId 
-
-let snakePosition = 0;
-let snake = [2, 1, 0]
-let direction = 1;
+let snake = [0, 1, 2, 3];
 let score = 0;
 
-function createGrid() { 
-  for (let i = 0; i < cellCount; i++){
-    const cell = document.createElement('div');
-    cell.setAttribute('data-id', i);
+const directions = {
+  left: "left",
+  right: "right",
+  up: "up",
+  down: "down",
+};
+
+let direction = directions.right;
+
+function createGrid() {
+  for (let i = 0; i < cellCount; i++) {
+    const cell = document.createElement("div");
+    cell.setAttribute("data-id", i);
+    cell.textContent = i;
     cells.push(cell);
     grid.appendChild(cell);
   }
 }
 createGrid();
 
-
-function addSnake() {
-  const squares = document.querySelectorAll('.grid div');
-  snake = [2, 1, 0];
-  snakePosition = 0;
-  snake.forEach((index) => squares[index].classList.add('snake')); 
-}
-addSnake()
-
-
-document.addEventListener('keyup', controlSnake)
-
-function controlSnake(event) {
-  if (event.keyCode === 37) {
-    for (let i = 0; i < snake.length; i++) {
-      snake[i] = snake[i] - 1
-      
-}console.log(snake)
+function setDirection(event) {
+  if (event.keyCode === 39) {
+    if (direction !== directions.left) {
+      direction = directions.right;
+    }
   } else if (event.keyCode === 38) {
-    direction = - width;
-  } else if (event.keyCode === 39) {
-    direction = + 1;
+    direction = directions.up;
+  } else if (event.keyCode === 37) {
+    if (direction !== directions.right) {
+      direction = directions.left;
+    }
   } else if (event.keyCode === 40) {
-    direction = + width;
+    direction = directions.down;
+  } else if (event.keyCode === 81) {
+    stopGame();
   }
-  console.log(direction)
+  console.log(direction);
 }
-function moveSnake() {
-  snake.pop();
-  
-  snake.unshift(snake[0] + direction);
-  
+
+document.addEventListener("keyup", setDirection);
+
+function removeSnake() {
+  cells.forEach((cell) => cell.classList.remove("snake"));
 }
-moveSnake();
 
-snakeId = setInterval(moveSnake, 200)
+function drawSnake() {
+  snake.forEach((snakeSection) => cells[snakeSection].classList.add("snake"));
+  cells.forEach((cell) => cell.classList.remove("head"));
+  cells[snake[snake.length - 1]].classList.add("head");
+}
 
+function renderSnake() {
+  removeSnake();
+  if (direction === directions.right) {
+    snake.shift();
+    snake.push(snake[snake.length - 1] + 1);
+  } else if (direction === directions.left) {
+    snake.shift();
+    snake.push(snake[snake.length - 1] - 1);
+  } else if (direction === directions.down) {
+    snake.shift();
+    snake.push(snake[snake.length - 1] + 20);
+  } else if (direction === directions.up) {
+    snake.push(snake[snake.length - 1] - 20);
+    snake.shift();
+  }
+
+  drawSnake();
+}
+
+let game;
+function startGame() {
+  game = setInterval(renderSnake, 500);
+}
+
+function stopGame() {
+  clearInterval(game);
+}
+
+startGame();
 
 //function generateRandomFoodIndex() {
 //return Math.floor(Math.random()*cellCount)
 //}
 //
-
-
-
