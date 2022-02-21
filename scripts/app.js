@@ -34,13 +34,17 @@ function setDirection(event) {
       direction = directions.right;
     }
   } else if (event.keyCode === 38) {
-    direction = directions.up;
+    if (direction !== directions.down) {
+      direction = directions.up;
+    }
   } else if (event.keyCode === 37) {
     if (direction !== directions.right) {
       direction = directions.left;
     }
   } else if (event.keyCode === 40) {
-    direction = directions.down;
+    if (direction !== directions.up) {
+      direction = directions.down;
+    }
   } else if (event.keyCode === 81) {
     stopGame();
   }
