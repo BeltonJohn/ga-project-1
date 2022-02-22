@@ -1,19 +1,18 @@
-const grid = document.querySelector(".grid");
-const scoreBoard = document.querySelectorAll(".score");
-const squares = document.querySelectorAll(".grid div");
+const grid = document.querySelector('.grid');
+const scoreBoard = document.querySelectorAll('.score');
 const width = 20;
 const cellCount = width * width;
 const cells = [];
-
-let snake = [0, 1, 2, 3];
-let score = 0;
-
 const directions = {
   left: "left",
   right: "right",
   up: "up",
   down: "down",
 };
+let snake = [0, 1, 2, 3];
+let foodPosition = 0;
+let totalFood = 0;
+let score = 0;
 
 let direction = directions.right;
 
@@ -48,13 +47,13 @@ function setDirection(event) {
   } else if (event.keyCode === 81) {
     stopGame();
   }
-  console.log(direction);
+  
 }
 
 document.addEventListener("keyup", setDirection);
 
 function removeSnake() {
-  cells.forEach((cell) => cell.classList.remove("snake"));
+  cells.forEach((cell) => cell.classList.remove('snake'));
 }
 
 function drawSnake() {
@@ -78,13 +77,34 @@ function renderSnake() {
     snake.push(snake[snake.length - 1] - 20);
     snake.shift();
   }
-
+  if (cells[snake[0]].classList.contains('pizza')) {
+    score ++;
+    cells[snake[0]].classList.remove('pizza')
+  }
   drawSnake();
 }
 
+// need to create a loop to check for current index of snake
+//need to generate a random index number to place food
+//need to add food to empty cells at set intervals independent of the rendersnake interval
+
+
+function addFood(){
+  let randomIndex = Math.floor(Math.random() * cellCount);
+  while (cells[randomIndex].classList.contains('snake')) {
+    randomIndex = Math.floor(Math.random() * cellCount);
+  }
+  cells[randomIndex].classList.add('pizza')
+}
+addFood()
+
+
+
 let game;
 function startGame() {
-  game = setInterval(renderSnake, 500);
+  game = setInterval(renderSnake, 300);
+  
+  
 }
 
 function stopGame() {

@@ -48,16 +48,20 @@ body {
   width: 5%;
 }
  .snake {
-   background: red ;
-  
+   background: red
  }
- grid div.pizza {
-   background-image: url(./assets/pizza.gif);
+.head {
+background: green;
+border-radius: 50%;
+}
+
+ .grid div.pizza {
+   background: url(./assets/pizza.gif);
    background-repeat: no-repeat;
   background-size: contain;
  }
 
-  grid div.pizza {
+  grid div.sandwich {
    background-image: url(./assets/sandwich.gif);
    background-repeat: no-repeat;
   background-size: contain;
