@@ -3,14 +3,16 @@ const scoreBoard = document.querySelectorAll('.score');
 const width = 20;
 const cellCount = width * width;
 const cells = [];
+const sound = document.querySelector('audio')
 const directions = {
   left: "left",
   right: "right",
   up: "up",
   down: "down",
 };
-let snake = [0, 1, 2, 3];
-let foodPosition = 0;
+let snake = [0, 1, 2, 3,];
+let speed = 500;
+
 let totalFood = 0;
 let score = 0;
 
@@ -20,12 +22,15 @@ function createGrid() {
   for (let i = 0; i < cellCount; i++) {
     const cell = document.createElement("div");
     cell.setAttribute("data-id", i);
-    cell.textContent = i;
+    //cell.textContent = i;
     cells.push(cell);
     grid.appendChild(cell);
   }
 }
 createGrid();
+
+
+
 
 function setDirection(event) {
   if (event.keyCode === 39) {
@@ -50,6 +55,7 @@ function setDirection(event) {
   
 }
 
+
 document.addEventListener("keyup", setDirection);
 
 function removeSnake() {
@@ -61,10 +67,13 @@ function drawSnake() {
   cells.forEach((cell) => cell.classList.remove("head"));
   cells[snake[snake.length - 1]].classList.add("head");
 }
-
+ 
 function renderSnake() {
   removeSnake();
   if (direction === directions.right) {
+    if (cells[snake[snake.length - 1] + 1].classList.contains('wallOne')) {
+      console.log('hit the walll')
+    }
     snake.shift();
     snake.push(snake[snake.length - 1] + 1);
   } else if (direction === directions.left) {
@@ -77,43 +86,62 @@ function renderSnake() {
     snake.push(snake[snake.length - 1] - 20);
     snake.shift();
   }
-  if (cells[snake[0]].classList.contains('pizza')) {
+  colission()
+
+  //timer = setTimeout(renderSnake, speed)
+
+  if (cells[snake[snake.length - 1]].classList.contains('pizza')) {
     score ++;
-    cells[snake[0]].classList.remove('pizza')
+    cells[snake[snake.length - 1]].classList.remove('pizza');
+    snake.unshift(snake[0])
+    sound.src = './assets/eat-pizza.m4a'
+    sound.play()
+    addPizza()
   }
   drawSnake();
 }
+// game ends when snake collides with its own tail
+function colission() {
+  if (snake.slice(1).includes(snake[0])) {
+    return stopGame();
+    
+  }
+}
+    
+
 
 // need to create a loop to check for current index of snake
 //need to generate a random index number to place food
-//need to add food to empty cells at set intervals independent of the rendersnake interval
 
 
-function addFood(){
+
+function addPizza(){
   let randomIndex = Math.floor(Math.random() * cellCount);
   while (cells[randomIndex].classList.contains('snake')) {
     randomIndex = Math.floor(Math.random() * cellCount);
   }
   cells[randomIndex].classList.add('pizza')
 }
-addFood()
+addPizza()
 
 
 
-let game;
+
 function startGame() {
-  game = setInterval(renderSnake, 300);
+  game = setInterval(renderSnake, 1000);
+  sound.src = './assets/startup.m4a'
+  sound.play()
   
   
 }
-
+let game
 function stopGame() {
   clearInterval(game);
+  sound.src = './assets/colission .m4a'
+  sound.play()
+  console.log('game over')
 }
 
 startGame();
 
-//function generateRandomFoodIndex() {
-//return Math.floor(Math.random()*cellCount)
-//}
-//
+timer = setTimeout(renderSnake, speed);

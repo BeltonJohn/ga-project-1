@@ -17,11 +17,20 @@
 </head>
 <body>
   
-  <header><p>PLAYER 1</p><p>SCORE <span class = "score"></span></p></header>
+  <header>
+    <p>PLAYER 1</p>
+    <p><button id="start-game">START GAME</button>
+    </p><p>SCORE <span class = "score"></span></p>
+  </header>
   <h1>NIBBLER BYTES</h1>
   <div class="grid-wrapper">
     <div class="grid"></div>
   </div>
+
+  <audio src="./assets/colission .m4a" id="colission"></audio>
+  <audio src="./assets/eat-pizza.m4a" id="eatPizza"></audio>
+  <audio src="./assets/eat-sandwich.m4a" id="eatSandwich"></audio>
+  <audio src="./assets/startup.m4a" id="startup"></audio>
   
   <script src="./scripts/app.js"></script>
 </body>
