@@ -1,5 +1,5 @@
 const grid = document.querySelector(".grid");
-const scoreBoard = document.querySelectorAll(".score");
+const scoreBoard = document.querySelector(".score");
 const start = document.querySelector(".start-game");
 const sound = document.querySelector("audio");
 const width = 20;
@@ -11,13 +11,12 @@ const directions = {
   up: "up",
   down: "down",
 };
-
 let snake = [0, 1, 2, 3];
 let speed = 500;
-
 let score = 0;
-
 let direction = directions.right;
+
+scoreBoard.innerText = score;
 
 function createGrid() {
   for (let i = 0; i < cellCount; i++) {
@@ -318,7 +317,7 @@ function renderSnake() {
   //timer = setTimeout(renderSnake, speed)
 
   if (cells[snake[snake.length - 1]].classList.contains("pizza")) {
-    score++;
+    score += 10;
     cells[snake[snake.length - 1]].classList.remove("pizza");
     snake.unshift(snake[0]);
     sound.src = "./assets/eat-pizza.m4a";
@@ -349,7 +348,7 @@ addPizza();
 
 let game;
 function startGame() {
-  game = setInterval(renderSnake, 500);
+  game = setInterval(renderSnake, speed);
   sound.src = "./assets/startup.m4a";
   sound.play();
   scoreBoard.innerText = score;
