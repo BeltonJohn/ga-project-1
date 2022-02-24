@@ -173,12 +173,12 @@ function createGrid() {
     if (i > 147 && i < 152) {
       cell.classList.add("wall-top", "wall");
     }
-    if (i > 167 && i < 172) {
-      cell.classList.add("wall-bottom", "wall");
-    }
-    if (i > 187 && i < 192) {
-      cell.classList.add("wall-top", "wall");
-    }
+    //if (i > 167 && i < 172) {
+    //cell.classList.add("wall-bottom", "wall");
+    //}
+    //if (i > 187 && i < 192) {
+    //  cell.classList.add("wall-top", "wall");
+    //}
     if (i > 5 && i % width === 8 && i > 140 && i < 180) {
       cell.classList.add("wall-left", "wall");
     }
@@ -198,12 +198,12 @@ function createGrid() {
     if (i > 267 && i < 272) {
       cell.classList.add("wall-top", "wall");
     }
-    if (i > 207 && i < 212) {
-      cell.classList.add("wall-bottom", "wall");
-    }
-    if (i > 227 && i < 232) {
-      cell.classList.add("wall-top", "wall");
-    }
+    //if (i > 207 && i < 212) {
+    //  cell.classList.add("wall-bottom", "wall");
+    //}
+    //if (i > 227 && i < 232) {
+    //  cell.classList.add("wall-top", "wall");
+    //}
     if (i > 5 && i % width === 8 && i > 220 && i < 260) {
       cell.classList.add("wall-left", "wall");
     }
@@ -293,23 +293,25 @@ function drawSnake() {
 function renderSnake() {
   removeSnake();
   if (direction === directions.right) {
-    // check for the walls around the snakes head and see if the snake array can be updated to move
-    // if (
-    //   !cells[snake[snake.length - 1] + 1].classList.contains('wall-left') ||
-    //   !cells[snake[snake.length - 1] + 1].classList.contains('wall-right')
-    // ) {
-    snake.shift();
-    snake.push(snake[snake.length - 1] + 1);
-    // }
+    if (!cells[snake[snake.length - 1]].classList.contains("wall-right")) {
+      snake.shift();
+      snake.push(snake[snake.length - 1] + 1);
+    }
   } else if (direction === directions.left) {
-    snake.shift();
-    snake.push(snake[snake.length - 1] - 1);
+    if (!cells[snake[snake.length - 1]].classList.contains("wall-left")) {
+      snake.shift();
+      snake.push(snake[snake.length - 1] - 1);
+    }
   } else if (direction === directions.down) {
-    snake.shift();
-    snake.push(snake[snake.length - 1] + 20);
+    if (!cells[snake[snake.length - 1]].classList.contains("wall-bottom")) {
+      snake.shift();
+      snake.push(snake[snake.length - 1] + 20);
+    }
   } else if (direction === directions.up) {
-    snake.push(snake[snake.length - 1] - 20);
-    snake.shift();
+    if (!cells[snake[snake.length - 1]].classList.contains("wall-top")) {
+      snake.push(snake[snake.length - 1] - 20);
+      snake.shift();
+    }
   }
   colission();
 
