@@ -1,19 +1,20 @@
 const grid = document.querySelector(".grid");
 const scoreBoard = document.querySelectorAll(".score");
+const start = document.querySelector(".start-game");
+const sound = document.querySelector("audio");
 const width = 20;
 const cellCount = width * width;
 const cells = [];
-const sound = document.querySelector("audio");
 const directions = {
   left: "left",
   right: "right",
   up: "up",
   down: "down",
 };
+
 let snake = [0, 1, 2, 3];
 let speed = 500;
 
-let totalFood = 0;
 let score = 0;
 
 let direction = directions.right;
@@ -22,6 +23,20 @@ function createGrid() {
   for (let i = 0; i < cellCount; i++) {
     const cell = document.createElement("div");
     cell.setAttribute("data-id", i);
+    // outer box
+    if (i >= 0 && i % width === 0 && i > 0 && i < 400) {
+      cell.classList.add("wall-left", "wall");
+    }
+    if (i > 0 && i % width === 19 && i > 0 && i < 400) {
+      cell.classList.add("wall-right", "wall");
+    }
+    if (i >= 0 && i < 20) {
+      cell.classList.add("wall-top", "wall");
+    }
+    if (i > 379 && i < 401) {
+      cell.classList.add("wall-bottom", "wall");
+    }
+
     // top horizontal walls
     if (i > 21 && i < 25) {
       cell.classList.add("wall-bottom", "wall");
@@ -307,6 +322,7 @@ function renderSnake() {
     sound.src = "./assets/eat-pizza.m4a";
     sound.play();
     addPizza();
+    scoreBoard.innerText = score;
   }
   drawSnake();
 }
@@ -334,6 +350,7 @@ function startGame() {
   game = setInterval(renderSnake, 500);
   sound.src = "./assets/startup.m4a";
   sound.play();
+  scoreBoard.innerText = score;
 }
 function stopGame() {
   clearInterval(game);
@@ -342,6 +359,6 @@ function stopGame() {
   console.log("game over");
 }
 
-startGame();
+start.addEventListener("click", startGame);
 
 timer = setTimeout(renderSnake, speed);
