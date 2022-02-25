@@ -1,6 +1,15 @@
 * {
   box-sizing: border-box;
 }
+*,
+:after,
+:before {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 header {
   display: flex;
   justify-content: space-around;
@@ -15,7 +24,7 @@ h1 {
   font-family: righteous, sans-serif;
   font-weight: bolder;
   font-size: 60px;
-  font-weight: ;
+  text-shadow: 2px 2px yellow;
 }
 body {
   height: 100vh;
@@ -44,26 +53,29 @@ body {
 }
 
 .wall-top {
-  border-top: 1px solid #5b5b5b;
+  border-top: 3px solid #7df9ff;
+  box-shadow: #7df9ff;
 }
 .wall-right {
-  border-right: 1px solid #5b5b5b;
+  border-right: 3px solid #7df9ff;
 }
 .wall-bottom {
-  border-bottom: 1px solid #5b5b5b;
+  border-bottom: 3px solid #7df9ff;
 }
 .wall-left {
-  border-left: 1px solid #5b5b5b;
+  border-left: 3px solid #7df9ff;
 }
 
 .snake {
-  background-image: url(./assets/snake\ diamond.png);
+  background-image: url(./assets/diamond.png);
   background-repeat: no-repeat;
   background-size: contain;
+  border: 2px white solid;
+  border-radius: 7px;
 }
 .head {
-  background: green;
-  border-radius: 30%;
+  background-image: url(./assets/head.png);
+  border-radius: 50px;
 }
 
 .grid div.pizza {
@@ -72,32 +84,34 @@ body {
   background-size: contain;
 }
 
-grid div.sandwich {
-  background-image: url(./assets/sandwich.gif);
+.grid div.burger {
+  background-image: url(./assets/burger.gif);
   background-repeat: no-repeat;
   background-size: contain;
 }
 button {
   position: relative;
   display: inline-block;
-  padding: 0 60px;
   outline: none;
-  border: none;
+
   background: #1d9650;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 1em;
   font-family: "Press Start 2P", cursive;
-  transform: perspective(400px) rotateX(6deg);
-  line-height: 4;
+  transform: perspective(400px) rotateX(3deg);
+  line-height: 2;
   padding: 0;
   overflow: visible;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   cursor: pointer;
   border-radius: 6px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 8px 15px grey;
   transition: color 0.1s ease-in 0.1s, transform 0.185s ease-in,
     box-shadow 0.15s ease-in;
+}
+.video-wrapper {
+  display: none;
 }

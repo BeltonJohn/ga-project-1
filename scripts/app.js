@@ -12,7 +12,7 @@ const directions = {
   down: "down",
 };
 let snake = [0, 1, 2, 3];
-let speed = 500;
+let speed = 250;
 let score = 0;
 let direction = directions.right;
 
@@ -23,7 +23,7 @@ function createGrid() {
     const cell = document.createElement("div");
     cell.setAttribute("data-id", i);
     // outer box
-    if (i >= 0 && i % width === 0 && i > 0 && i < 400) {
+    if (i >= 0 && i % width === 0 && i < 400) {
       cell.classList.add("wall-left", "wall");
     }
     if (i > 0 && i % width === 19 && i > 0 && i < 400) {
@@ -278,6 +278,8 @@ function setDirection(event) {
 
 document.addEventListener("keyup", setDirection);
 
+// Everyything needed to render the snake and get it moving
+
 function removeSnake() {
   cells.forEach((cell) => cell.classList.remove("snake"));
 }
@@ -314,15 +316,31 @@ function renderSnake() {
   }
   colission();
 
-  //timer = setTimeout(renderSnake, speed)
+  //Eat pizza function speeds up snake and gives points
 
   if (cells[snake[snake.length - 1]].classList.contains("pizza")) {
-    score += 10;
+    score += 50;
+
     cells[snake[snake.length - 1]].classList.remove("pizza");
     snake.unshift(snake[0]);
     sound.src = "./assets/eat-pizza.m4a";
     sound.play();
     addPizza();
+    scoreBoard.innerText = score;
+    speed -= 20;
+    clearInterval(game);
+    game = setInterval(renderSnake, speed);
+  }
+
+  //Eat hamburger function only gives points
+  if (cells[snake[snake.length - 1]].classList.contains("burger")) {
+    score += 50;
+
+    cells[snake[snake.length - 1]].classList.remove("burger");
+    snake.unshift(snake[0]);
+    sound.src = "./assets/eat-burger.m4a";
+    sound.play();
+    addBurger();
     scoreBoard.innerText = score;
   }
   drawSnake();
@@ -333,9 +351,9 @@ function colission() {
     return stopGame();
   }
 }
+console.log(colission);
 
-// need to create a loop to check for current index of snake
-//need to generate a random index number to place food
+// Random placement of food
 
 function addPizza() {
   let randomIndex = Math.floor(Math.random() * cellCount);
@@ -346,12 +364,22 @@ function addPizza() {
 }
 addPizza();
 
+function addBurger() {
+  let randomIndex = Math.floor(Math.random() * cellCount);
+  while (cells[randomIndex].classList.contains("snake")) {
+    randomIndex = Math.floor(Math.random() * cellCount);
+  }
+  cells[randomIndex].classList.add("burger");
+}
+addBurger();
+
 let game;
 function startGame() {
   game = setInterval(renderSnake, speed);
   sound.src = "./assets/startup.m4a";
   sound.play();
   scoreBoard.innerText = score;
+  snake = [0, 1, 2, 3];
 }
 function stopGame() {
   clearInterval(game);
@@ -361,5 +389,3 @@ function stopGame() {
 }
 
 start.addEventListener("click", startGame);
-
-timer = setTimeout(renderSnake, speed);
