@@ -383,7 +383,7 @@ function startGame() {
 }
 function stopGame() {
   clearInterval(game);
-  sound.src = "./assets/colission .m4a";
+  sound.src = "./assets/colission.m4a";
   sound.play();
   console.log("game over");
 }
