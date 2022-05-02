@@ -2,15 +2,15 @@
 
 The Nibbler is an intergalactic reptilian alien with an insatiable appetite. He likes a varied diet but has found a particular taste for pizza and hamburgers since his arrival on Earth.
 
-Instructions
+### Instructions
 
-Clear the maze by eating the food
+#### \* Clear the maze by eating the food
 
-DO NOT let Nibbler bite itself!
+#### \* DO NOT let Nibbler bite itself!
 
-Nibbler does not stop at corners
+#### \* Nibbler does not stop at corners
 
-Nibbler grows longer when it eats
+#### \* Nibbler grows longer when it eats
 
 ![](assets/nibbler-gameplay.gif)
 
