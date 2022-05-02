@@ -67,17 +67,3 @@ Day 6 was much better after having an Epiphone for why the snake wouldn’t eat 
 ## Day 7
 
 Progress slowed on the final day but I got a function working which would speed up the snake as it ate and a scoreboard which updated as it ate food. I addition to this I added some extra features such as a start game button, an additional food powerup which was a hamburger that provided additional points without speeding the snake up and also some improved styling. I wanted to add some game over and start screens but encountered a couple of bugs. The bugs were related to the Collision function and as of yet hasn’t been fixed.
-
-# Nibbler-Bytes
-
-The Nibbler is an intergalactic reptilian alien with an insatiable appetite. He likes a varied diet but has found a particular taste for pizza and hamburgers since his arrival on Earth.
-
-Instructions
-
-Clear the maze by eating the food
-
-DO NOT let Nibbler bite itself!
-
-Nibbler does not stop at corners
-
-Nibbler grows longer when it eats
