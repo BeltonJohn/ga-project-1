@@ -1,9 +1,25 @@
-## Project
+# Nibbler-Bytes
+
+The Nibbler is an intergalactic reptilian alien with an insatiable appetite. He likes a varied diet but has found a particular taste for pizza and hamburgers since his arrival on Earth.
+
+Instructions
+
+Clear the maze by eating the food
+
+DO NOT let Nibbler bite itself!
+
+Nibbler does not stop at corners
+
+Nibbler grows longer when it eats
+
+![](assets/nibbler-gameplay.gif)
 
 ## ProjectOverview
 
 Nibbler Bytes was born out of a documentary I had seen about the arcade game of a similar name.
-When I learned of the firs SEI project to make a grid based game with vanilla JavaScript this is what initally sprang to mind. This project was the first time to apply everything I had learned in the opening few weeks of the SEI course.
+When I learned of the first SEI project to make a grid based game with vanilla JavaScript this is what initally sprang to mind. This project was the first time to apply everything I had learned in the opening few weeks of the SEI course.
+
+[Play Game Here](https://beltonjohn.github.io/ga-project-1/)
 
 ### Duration:
 
