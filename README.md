@@ -8,7 +8,7 @@ The Nibbler is an intergalactic reptilian alien with an insatiable appetite. He 
 <li>DO NOT let Nibbler bite itself!</li>
 <li>Nibbler does not stop at corners</li>
 <li>Nibbler grows longer when it eats</li>
-</br>
+
 ![](assets/nibbler-gameplay1.gif)
 
 ## ProjectOverview
