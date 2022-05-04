@@ -4,13 +4,10 @@ The Nibbler is an intergalactic reptilian alien with an insatiable appetite. He 
 
 ### Instructions
 
-#### \* Clear the maze by eating the food
-
-#### \* DO NOT let Nibbler bite itself!
-
-#### \* Nibbler does not stop at corners
-
-#### \* Nibbler grows longer when it eats
+<li>Clear the maze by eating the food</li>
+<li>DO NOT let Nibbler bite itself!</li>
+<li>Nibbler does not stop at corners</li>
+<li>Nibbler grows longer when it eats</li>
 
 ![](assets/nibbler-gameplay1.gif)
 
@@ -33,10 +30,11 @@ HTML, CSS, JavaScript.
 
 The brief was to create a grid-based game using only JavaScript, CSS, and HTML.
 
-requisite feature specifically for a snake game wer as follows:
+requisite features specifically for a snake game were as follows:
 
-*The snake should grow when it eats a piece of food
-*The snake should speed up when it eats a pice of food
+<li>The snake should grow when it eats a piece of food</li>
+<li>The snake should speed up when it eats a pice of food</li>
+<li>The snake should grow in length when it eats a piece of food</li>
 
 ## Initial Steps
 
